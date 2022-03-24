@@ -10,9 +10,9 @@ connectDB();
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-app.get("/api", (req, res) => {
-  res.json({ message: "David bsdk chodu" });
-});
+app.use('/', showHomePage);
+app.use('/app', require('./routes/getRoutes'));
+app.use('/app', require('./routes/postRoutes'))
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
