@@ -3,6 +3,8 @@ import Input from './Input';
 import { Grid, Button, Typography, Container, Paper, Avatar } from '@material-ui/core';
 import LockedOutlineIcon from '@material-ui/icons/LockOutlined';
 import useStyles from './styles.js';
+import Navbar from '../Components/Navbar/Navbar';
+import { Link } from 'react-router-dom'
 
 const Auth = () => {
   const initialFormState = { firstName : '', lastName : '', email : '', password : '', confirmPassword : '' };
@@ -10,6 +12,8 @@ const Auth = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
   const [formData, setFormData] = useState(initialFormState);
+
+  //const [open, setOpen] = useState(false);
 
   //const dispatch = useDispatch();
   //const state = null;
@@ -56,7 +60,7 @@ const Auth = () => {
             <Input name="password" label="Password" autoFocus type={showPassword ? "text" : "password"} />
             { isSignup ? <Input name="confirmPassword" label="Repeat Password" type='password' /> : null}
           </Grid>
-          <Button type="submit" fullWidth variant="contained" color="primary">
+          <Button type="submit" to="/dashboard" component={Link} fullWidth variant="contained" color="primary" style={{margin: 'inherit'}}>
             {isSignup ? 'Sign Up' : 'Sign In'}
           </Button>
           <Grid container justify="flex-end">
