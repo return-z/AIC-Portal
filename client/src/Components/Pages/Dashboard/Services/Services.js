@@ -1,5 +1,5 @@
 import React from 'react'
-import { services } from '../../../../Constants/items'
+import { services } from '../../../../constants/items'
 import Service from './Service/Service';
 import { Grid } from '@material-ui/core';
 

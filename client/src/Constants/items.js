@@ -1,3 +1,5 @@
+export const AUTH = 'AUTH';
+
 export const services = [
   {category : 'Service1', link : 'service1'},
   {category :'Service1', link : 'men-apparel'},

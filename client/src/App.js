@@ -1,11 +1,11 @@
 import React, {useState} from 'react'
 import Home from './Home';
-import Navbar from './Components/Navbar/Navbar';
+import Navbar from './components/Navbar/Navbar';
 import { Container, Grid } from '@material-ui/core';
-import Auth from './Auth/Auth'
+import Auth from './auth/Auth'
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Dashboard from './Components/Pages/Dashboard/Dashboard';
+import Dashboard from './components/Pages/Dashboard/Dashboard';
 
 const App = () => {
   //const [filterCategory, setFilterCategory] = useState(null);
