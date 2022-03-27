@@ -66,6 +66,7 @@ const Navbar = ({ open, setOpen }) => {
       <CssBaseline />
       <AppBar
         position="fixed"
+        color="#000"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}

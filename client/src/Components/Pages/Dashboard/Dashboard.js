@@ -9,7 +9,7 @@ const Dashboard = () => {
     <Container>
         <Grid container justify="center" alignItems="stretch" spacing={3}>
           <Grid item xs={12} sm={12} style={{display:'flex', flexDirection:'column'}}>
-            <Typography variant="h5" style={{fontFamily:'montserrat'}}>Services:</Typography>
+            <Typography variant="h5" style={{fontFamily:'montserrat', marginTop:'10px'}}>Services:</Typography>
           </Grid>
           <Grid item xs={12} sm={12}>
             <Grid container alignItems="stretch" spacing={3} >
