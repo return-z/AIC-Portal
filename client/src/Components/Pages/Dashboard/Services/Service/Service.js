@@ -14,7 +14,7 @@ const Service = ( { service }) => {
 
   return (
     <Card className={classes.card}>
-      <CardActionArea style={{ textAlign : 'center' }} >
+      <CardActionArea style={{ textAlign : 'center' }} component={Link} to={service.link}>
         <CardMedia className={classes.media} />
         <CardContent style={{ padding : 5}}>
           <Typography variant="h5" className={classes.font}>{service.category}</Typography>

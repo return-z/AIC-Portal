@@ -1,7 +1,7 @@
 export const AUTH = 'AUTH';
 
 export const services = [
-  {category : 'Service1', link : 'service1'},
+  {category : 'Book an appointment', link : '/bookapp'},
   {category :'Service1', link : 'men-apparel'},
   {category :'Service1', link :  'women-apparel'},
   {category :'Books', link :  'books'},

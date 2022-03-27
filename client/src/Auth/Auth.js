@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Input from './Input';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Grid, Button, Typography, Container, Paper, Avatar } from '@material-ui/core';
 import { signin, signup } from '../actions/auth.js';
 import LockedOutlineIcon from '@material-ui/icons/LockOutlined';
@@ -77,7 +77,7 @@ const Auth = () => {
             <Input name="password" label="Password" handleChange={handleChange} autoFocus type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} />
             { isSignup ? <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type='password' /> : null}
           </Grid>
-          <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+          <Button component={Link} to="/dashboard" type="submit" fullWidth variant="contained" color="#e1e1e1" className={classes.submit}>
             {isSignup ? 'Sign Up' : 'Sign In'}
           </Button>
           <GoogleLogin

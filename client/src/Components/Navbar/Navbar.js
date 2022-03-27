@@ -92,7 +92,7 @@ const Navbar = ({ open, setOpen }) => {
                 <Button variant="contained" color="secondary" onClick={handleUser}>Logout</Button>
                 </div></>
               ) : (
-                <Button component={Link} to="/auth" variant="contained" color="secondary">Sign In</Button>
+                <Button component={Link} to="/auth" variant="contained" color="#fff">Sign In</Button>
               ) }
             </div>
           </Toolbar>
