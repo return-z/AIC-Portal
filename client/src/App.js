@@ -7,6 +7,7 @@ import Auth from './auth/Auth'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Dashboard from './components/Pages/Dashboard/Dashboard';
 import Bookapp from './components/Pages/Dashboard/Services/Bookapp/Bookapp';
+import Appointments from './components/Pages/Dashboard/Services/Appointments/Appointments';
 
 const App = () => {
   //const [filterCategory, setFilterCategory] = useState(null);
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/auth" element={<Auth />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/bookapp" element={<Bookapp />} />
+          <Route path="/appointments" element={<Appointments />} />
         </Routes>
       </Container>
     </BrowserRouter>

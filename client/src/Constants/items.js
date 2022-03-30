@@ -1,8 +1,9 @@
 export const AUTH = 'AUTH';
+export const FETCH_APP = 'FETCH_APP';
 
 export const services = [
   {category : 'Book an appointment', link : '/bookapp'},
-  {category :'Service1', link : 'men-apparel'},
+  {category :'Previous Appointments', link : '/appointments'},
   {category :'Service1', link :  'women-apparel'},
   {category :'Books', link :  'books'},
   {category :'Electronics', link :  'electronics'},
