@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-import { isEmail } from 'validator';
 
 var DoctorSchema = new mongoose.Schema({
     firstName : {
@@ -17,7 +16,6 @@ var DoctorSchema = new mongoose.Schema({
     email : {
         type: String, 
         required: true, 
-        validate: [isEmail, 'E-mail is invalid']
     },
     phoneNo : {
         type: Number,
@@ -28,8 +26,7 @@ var DoctorSchema = new mongoose.Schema({
             message: '{VALUE} is not a valid phone number!'
         }
     },
-    patients: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Patient'
-    }]
+    appointments: {
+        type: Array,
+    }
 })
