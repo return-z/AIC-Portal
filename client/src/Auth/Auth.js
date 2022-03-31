@@ -77,7 +77,7 @@ const Auth = () => {
             <Input name="password" label="Password" handleChange={handleChange} autoFocus type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} />
             { isSignup ? <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type='password' /> : null}
           </Grid>
-          <Button component={Link} to="/dashboard" type="submit" fullWidth variant="contained" color="#e1e1e1" className={classes.submit}>
+          <Button type="submit" fullWidth variant="contained" color="#e1e1e1" className={classes.submit}>
             {isSignup ? 'Sign Up' : 'Sign In'}
           </Button>
           <GoogleLogin

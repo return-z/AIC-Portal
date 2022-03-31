@@ -5,6 +5,7 @@ const Doctor = require('../models/Doctor');
 
 const loginPatient = async (req, res) => {
     const { email, pwd } = req.body;
+    console.log('endpoint hit');
     try {
         const existingPatient = await Patient.findOne({email});
         if (!existingPatient) return res.status(400).json({message : "Patient does not exist!"});
