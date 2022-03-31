@@ -74,7 +74,7 @@ const Navbar = ({ open, setOpen }) => {
         <div id="ekart">
           <Toolbar style={{ display:'flex', justifyContent:'space-between'}}>
             <IconButton
-              color="inherit"
+              color="white"
               aria-label="open drawer"
               onClick={handleDrawerOpen}
               edge="start"
