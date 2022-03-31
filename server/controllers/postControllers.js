@@ -4,6 +4,7 @@ import Patient from '../models/Patient';
 import Doctor from '../models/Doctor';
 
 export const loginPatient = async (req, res) => {
+    console.log(req);
     const {email, phoneNo, pwd} = req.body;
     try {
         const existingPatient = await Patient.findOne({email}) || await Patient.findOne({phoneNo});
