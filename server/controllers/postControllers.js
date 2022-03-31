@@ -75,12 +75,12 @@ const bookApp = async (req, res) => {
         const patientApps = currPatient.appointments;
         const docApps = currDoctor.appointments;
         patientApps.push({
-            "doctor" : currDoctor, 
-            "datetime" : dateTime,
+            doctor : currDoctor, 
+            datetime : dateTime,
         })
         docApps.push({
-            "patient" : currPatient, 
-            "datetime" : dateTime,
+            patient : currPatient, 
+            datetime : dateTime,
         })
         currDoctor.appointments = docApps;
         currPatient.appointments = patientApps;
