@@ -12,7 +12,7 @@ import Icon from './Icon';
 //import { Link } from 'react-router-dom'
 
 const Auth = () => {
-  const initialFormState = { firstName : '', lastName : '', email : '', password : '', confirmPassword : '' };
+  const initialFormState = { firstName : '', lastName : '', email : '', password : '', confirmPassword : '', phoneNo : '' };
 
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
@@ -75,6 +75,7 @@ const Auth = () => {
             }
             <Input name="email" label="Email Address" handleChange={handleChange} autoFocus type="email"/>
             <Input name="password" label="Password" handleChange={handleChange} autoFocus type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} />
+            { isSignup ? <Input name="phoneNo" label="Phone Number" handleChange={handleChange} autoFocus type="phone-number"/> : null}
             { isSignup ? <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type='password' /> : null}
           </Grid>
           <Button type="submit" fullWidth variant="contained" color="#e1e1e1" className={classes.submit}>
