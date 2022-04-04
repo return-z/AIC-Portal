@@ -34,21 +34,16 @@ const getUpcomingAppointments = async (req, res) => {
         appointments.sort((a, b) => {
             return new Date(b.datetime) - new Date(a.datetime);
         });
-        const currDate= new Date();
-        let idx=0;
+        const currDate = new Date();
+        let idx = 0;
         const prevAppointments = [];
-        while(idx<appointments.length && appointments[idx].datetime < currDate)
+        while(idx < appointments.length && appointments[idx].datetime < currDate)
         {
             prevAppointments.push(appointments[idx]);
-            idx=idx+1;
+            idx = idx + 1;
         }
-        if(idx>=appointments.length)
-        {
-            //no appointment found
-        }
-        else{
-            res.status(200).json({appointment : appointments[idx]});
-        }
+        if(idx >= appointments.length) res.status(200).json({appointment : null});
+        else res.status(200).json({appointment : appointments[idx]});
         
     } catch (error) {
         console.log(error);
