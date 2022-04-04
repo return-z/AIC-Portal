@@ -4,6 +4,6 @@ const {getAppointments, getUpcomingAppointments, getAllDoctors} = require('../co
 
 router.get('/appointments', getAppointments);
 router.get('/upcoming', getUpcomingAppointments);
-router.get('/doctors', getAllDoctors);
+router.get('/getdoctors', getAllDoctors);
 
 module.exports = router;

@@ -8,7 +8,18 @@ const getAppointments = async (req, res) => {
     try {
         const currPatient = await Patient.findOne({__id : currPatientID});
         const appointments = currPatient.appointments;
-        res.status(200).json({appointments});
+        appointments.sort((a, b) => {
+            return new Date(b.datetime) - new Date(a.datetime);
+        });
+        const currDate= new Date();
+        let idx=0;
+        const prevAppointments = [];
+        while(idx<appointments.length && appointments[idx].datetime < currDate)
+        {
+            prevAppointments.push(appointments[idx]);
+            idx=idx+1;
+        }
+        res.status(200).json({prevAppointments});
     } catch (error) {
         console.log(error);
         res.status(500).json({message: "Something went wrong!"});
@@ -23,7 +34,17 @@ const getUpcomingAppointments = async (req, res) => {
         appointments.sort((a, b) => {
             return new Date(b.datetime) - new Date(a.datetime);
         });
-        res.status(200).json({appointment : appointments[0]});
+        const currDate = new Date();
+        let idx = 0;
+        const prevAppointments = [];
+        while(idx < appointments.length && appointments[idx].datetime < currDate)
+        {
+            prevAppointments.push(appointments[idx]);
+            idx = idx + 1;
+        }
+        if(idx >= appointments.length) res.status(200).json({appointment : null});
+        else res.status(200).json({appointment : appointments[idx]});
+        
     } catch (error) {
         console.log(error);
         res.status(500).json({message : "Something went wrong!"});
@@ -33,9 +54,12 @@ const getUpcomingAppointments = async (req, res) => {
 
 const getAllDoctors = async (req , res) => {
     try {
-        await Doctor.find({}, (err, doctors) => {
-            res.status(200).json({doctors}); 
-        });
+        await Doctor.find({}).then(doctors => {
+            res.status(200).json({doctors});
+        }).catch(e => {
+            console.log(e);
+            res.status(500).json({message : "Something went wrong!"});
+        }) 
     }
     catch (e) {
         console.log(e);
