@@ -54,17 +54,12 @@ const getUpcomingAppointments = async (req, res) => {
 
 const getAllDoctors = async (req , res) => {
     try {
-        await Doctor.find({}).then(doctors => {
-            res.status(200).json({doctors});
-        }).catch(e => {
-            console.log(e);
-            res.status(500).json({message : "Something went wrong!"});
-        }) 
-    }
-    catch (e) {
-        console.log(e);
-        res.status(500).json({message: "Something went wrong!"})
-    }
+        const items = await Doctor.find();
+        res.status(200).json(items);
+      } catch (error) {
+        console.log(error);
+        res.status(404).json({ message:error.message });
+      }
 };
 
 

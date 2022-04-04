@@ -6,6 +6,7 @@ import { DateTimePicker, LocalizationProvider } from '@mui/lab'
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import Input from "./Input";
 import { fetchDoctors } from "../../../../../actions/appointments";
+import { Menu } from "@mui/material";
 
 const Bookapp = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,8 @@ const Bookapp = () => {
   const [value, setValue] = useState(new Date().toLocaleDateString());
   const classes = useStyles();
   const user = JSON.parse(localStorage.getItem('profile'));
-  let doctors = [];
+  let doctors = useSelector((state) => state.doctors);
+  const doctor = 'doctor';
 
   const handleChange = (newValue) => {
     setValue(newValue);
@@ -25,6 +27,10 @@ const Bookapp = () => {
   }, [dispatch])
 
   console.log(doctors);
+
+  const handleDocs = () => {
+
+  }
 
   return (
     <Container component="main" maxWidth="sm">
@@ -45,13 +51,12 @@ const Bookapp = () => {
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             label="Doctor"
+            value=""
             onChange={handleChange}
           >
-            {doctors.length ? (
-              doctors.map((doctor) => (
-                <MenuItem value={doctor}>{doctor}</MenuItem>
-              ))
-            ): null }
+            {doctors.map((doctor) => (
+              <MenuItem value={doctor.firstName}>{doctor.firstName}</MenuItem>
+            ))}
           </Select>
         </FormControl>
         <Grid flex style={{display:'flex', justifyContent:'center', margin:'inherit'}}>

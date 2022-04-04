@@ -14,8 +14,8 @@ export const fetchAppointments = (formData, history) => async (dispatch) => {
 export const fetchDoctors = () => async (dispatch) => {
   try {
     const { data } = await api.fetchDoctors();
-    dispatch({ type : FETCH_DOCS, payload : data })
-    console.log('dispatched');
+    dispatch({ type : FETCH_DOCS, payload : data });
+    console.log(data);
   } catch (error) {
     console.log(error);
   }
