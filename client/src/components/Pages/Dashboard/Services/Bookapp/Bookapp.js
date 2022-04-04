@@ -1,17 +1,31 @@
-import { React, useState }  from "react";
-import { Container, Paper, Avatar, Typography, Grid, Button, TextField } from "@material-ui/core";
+import { React, useState, useEffect }  from "react";
+import { Container, Paper, Avatar, Select, Typography, Grid, Button, TextField, FormControl, InputLabel, MenuItem } from "@material-ui/core";
 import useStyles from './styles';
-import { DesktopDatePicker, LocalizationProvider } from '@mui/lab'
+import { useSelector, useDispatch } from 'react-redux';
+import { DateTimePicker, LocalizationProvider } from '@mui/lab'
 import AdapterDateFns from '@mui/lab/AdapterDateFns'
 import Input from "./Input";
+import { fetchDoctors } from "../../../../../actions/appointments";
 
 const Bookapp = () => {
+  const dispatch = useDispatch();
   const newDate = new Date();
-  const [value, setValue] = useState(newDate.getDate());
+  const [value, setValue] = useState(new Date().toLocaleDateString());
   const classes = useStyles();
-  const handleChange = () => {
+  const user = JSON.parse(localStorage.getItem('profile'));
+  let doctors = [];
 
+  const handleChange = (newValue) => {
+    setValue(newValue);
+    console.log(value);
   }
+
+  useEffect(() => {
+    dispatch(fetchDoctors());
+  }, [dispatch])
+
+  console.log(doctors);
+
   return (
     <Container component="main" maxWidth="sm">
     <Paper className={classes.paper} elevation={3}>
@@ -25,11 +39,25 @@ const Bookapp = () => {
           <Input name="email" label="Email Address" autoFocus />
           <Input name="password" label="Password" autoFocus />
         </Grid>
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Doctor</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="Doctor"
+            onChange={handleChange}
+          >
+            {doctors.length ? (
+              doctors.map((doctor) => (
+                <MenuItem value={doctor}>{doctor}</MenuItem>
+              ))
+            ): null }
+          </Select>
+        </FormControl>
         <Grid flex style={{display:'flex', justifyContent:'center', margin:'inherit'}}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DesktopDatePicker
+            <DateTimePicker
             label="Appointment Date"
-            inputFormat="MM/dd/yyyy"
             value={value}
             onChange={handleChange}
             renderInput={(params) => <TextField {...params} />}

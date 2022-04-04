@@ -30,3 +30,7 @@ var DoctorSchema = new mongoose.Schema({
         type: Array,
     }
 })
+
+const Doctor = mongoose.model("Doctor", DoctorSchema);
+
+module.exports = Doctor;
