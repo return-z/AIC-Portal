@@ -95,4 +95,19 @@ const bookApp = async (req, res) => {
     }
 } 
 
-module.exports = {loginDoctor, loginPatient, registerDoctor, registerPatient, bookApp};
+const addPatientInfo = async (req, res) => {
+    const {age, weight, isReferred, isVaccinated, isImmuno, immunoType, currPatientID} = req.body;
+    try {
+        await Patient.findByIdAndUpdate(currPatientID, {age, weight, isReferred, isVaccinated, isImmuno, immunoType}, (err, result) => {
+            if (err) console.log(err);
+            else console.log("Success!");
+        })
+        res.status(200).json({message : "Details updated successfully!"});
+    }
+    catch (e) {
+        console.log(e);
+        res.status(500).json({message : "Something went wrong!"});
+    }
+}
+
+module.exports = {loginDoctor, loginPatient, registerDoctor, registerPatient, bookApp, addPatientInfo};

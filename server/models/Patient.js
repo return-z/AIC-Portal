@@ -19,14 +19,14 @@ const PatientSchema = new mongoose.Schema({
     },
     phoneNo : {
         type: Number,
-        /*validate: {
+        validate: {
             validator: function(v) {
                 return /d{10}/.test(v);
             },
             message: '{VALUE} is not a valid phone number!'
-        }*/
+        }
     },
-    /*age: {
+    age: {
         type: Number,
     },
     weight: {
@@ -45,16 +45,10 @@ const PatientSchema = new mongoose.Schema({
         type: String,
         enum: ['eRIG','mRIG',' HRIG']
     },
-    
-    // doctor: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'Doctor'
-    // }*/
     appointments: {
         type: Array,
     }
 })
 
 const Patient = mongoose.model("Patient", PatientSchema);
-
 module.exports = Patient;
