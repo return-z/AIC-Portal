@@ -26,7 +26,7 @@ const getAppointments = async (req, res) => {
     }
 };
 
-const getUpcomingAppointments = async (req, res) => {
+const getUpcomingPatientAppointments = async (req, res) => {
     const { currPatientID } = req.body;
     try {
         const currPatient = await Patient.findOne({__id : currPatientID});
@@ -62,5 +62,29 @@ const getAllDoctors = async (req , res) => {
       }
 };
 
+const getUpcomingDoctorAppointments = async (req, res) => {
+    const { currDoctorID } = req.body;
+    try {
+        const currDoctor = await Doctor.findOne({__id : currDoctorID});
+        const appointments = currDoctor.appointments;
+        appointments.sort((a, b) => {
+            return new Date(b.datetime) - new Date(a.datetime);
+        });
+        const currDate = new Date();
+        let idx = 0;
+        const prevAppointments = [];
+        while(idx < appointments.length && appointments[idx].datetime < currDate)
+        {
+            prevAppointments.push(appointments[idx]);
+            idx = idx + 1;
+        }
+        if(idx >= appointments.length) res.status(200).json({appointment : null});
+        else res.status(200).json({appointment : appointments[idx]});
+        
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({message : "Something went wrong!"});
+    }
+};
 
-module.exports = {getAppointments, getUpcomingAppointments, getAllDoctors};
+module.exports = {getAppointments, getUpcomingPatientAppointments, getAllDoctors, getUpcomingDoctorAppointments};
