@@ -2,6 +2,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Patient = require('../models/Patient');
 const Doctor = require('../models/Doctor');
+const Report = require('../models/Report');
+const Appointment = require('../models/Appointment');
 
 const loginPatient = async (req, res) => {
     const { email, password } = req.body;
@@ -73,21 +75,8 @@ const bookApp = async (req, res) => {
     try {
         const currDoctor = await Doctor.findOne({__id : doctorID});
         const currPatient = await Patient.findOne({__id : currPatientID});
-        const patientApps = currPatient.appointments;
-        const docApps = currDoctor.appointments;
-        patientApps.push({
-            doctor : currDoctor, 
-            datetime : dateTime,
-        })
-        docApps.push({
-            patient : currPatient, 
-            datetime : dateTime,
-        })
-        currDoctor.appointments = docApps;
-        currPatient.appointments = patientApps;
-        currDoctor.save();
-        currPatient.save();
-        res.status(200).json({message : "Appointment booked!"});
+        const newAppointment = await Appointment({patient : currPatient, doctor : currDoctor, time : dateTime});
+        res.status(200).json({message : "Appointment booked!", result : newAppointment});
     }
     catch (e) {
         console.log(e);
@@ -98,10 +87,7 @@ const bookApp = async (req, res) => {
 const addPatientInfo = async (req, res) => {
     const {age, weight, isReferred, isVaccinated, isImmuno, immunoType, currPatientID} = req.body;
     try {
-        await Patient.findByIdAndUpdate(currPatientID, {age, weight, isReferred, isVaccinated, isImmuno, immunoType}, (err, result) => {
-            if (err) console.log(err);
-            else console.log("Success!");
-        })
+        await Patient.findByIdAndUpdate(currPatientID, {age, weight, isReferred, isVaccinated, isImmuno, immunoType});
         res.status(200).json({message : "Details updated successfully!"});
     }
     catch (err) {
@@ -110,4 +96,15 @@ const addPatientInfo = async (req, res) => {
     }
 }
 
-module.exports = {loginDoctor, loginPatient, registerDoctor, registerPatient, bookApp, addPatientInfo};
+const generateReport = async (req, res) => {
+    const {currPatientID, diagnosis} = req.body;
+    try {
+        const result = await Report.create({patient : Patient.findById(currPatientID), diagnosis});
+        res.status(200).json({result});
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({message : "Something went wrong!"});
+    }
+}
+
+module.exports = {loginDoctor, loginPatient, registerDoctor, registerPatient, bookApp, addPatientInfo, generateReport};

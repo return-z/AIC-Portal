@@ -45,9 +45,6 @@ const PatientSchema = new mongoose.Schema({
         type: String,
         enum: ['eRIG','mRIG',' HRIG']
     },
-    appointments: {
-        type: Array,
-    }
 })
 
 const Patient = mongoose.model("Patient", PatientSchema);

@@ -26,9 +26,6 @@ var DoctorSchema = new mongoose.Schema({
         //     message: '{VALUE} is not a valid phone number!'
         // }
     },
-    appointments: {
-        type: Array,
-    }
 })
 
 const Doctor = mongoose.model("Doctor", DoctorSchema);
