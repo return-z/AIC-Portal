@@ -104,8 +104,8 @@ const addPatientInfo = async (req, res) => {
         })
         res.status(200).json({message : "Details updated successfully!"});
     }
-    catch (e) {
-        console.log(e);
+    catch (err) {
+        console.log(err);
         res.status(500).json({message : "Something went wrong!"});
     }
 }
