@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchAppointments } from '../../../../../actions/appointments';
+import { fetchAppointments, fetchDoctors } from '../../../../../actions/appointments';
 import useStyles from './styles'
 import { Container, Grid, Typography, Button, Tooltip, Card, CardContent, CardActions } from '@mui/material';
 import clsx from 'clsx';
 import DownloadIcon from '@mui/icons-material/GetApp';
 
 const Appointments = () => {
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const appointments = [{ doctor: "Dr. O" , date: "28-02-11", summary: "Lipid profile check up" }, {doctor: 'Dr. PP', date: '29-03-19', summary: 'Blood work'}]
   const user = JSON.parse(localStorage.getItem('profile'));
   const classes = useStyles();

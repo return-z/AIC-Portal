@@ -1,4 +1,4 @@
-import { AUTH, LOGOUT } from '../constants/items';
+import { AUTH, LOGOUT, FETCH_DOCS } from '../constants/items';
 
 const authReducer = (state = { authData : null }, action) => {
   switch (action.type) {
